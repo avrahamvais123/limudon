@@ -211,7 +211,8 @@ const Card = () => {
         "relative overflow-hidden",
         "h-fit w-[28rem] p-6 transition-all",
         "flex flex-col items-center",
-        "rounded-md bg-white"
+        "rounded-md bg-white",
+        "max-md:w-full"
       )}
     >
       <Modal trigger={openModalStart} parentClassName="bg-white">
@@ -245,6 +246,7 @@ const Card = () => {
                 >
                   <div className="flex items-center gap-4">
                     <p className="w-4">{idx + 1}</p>
+
                     <div className="flex flex-col justify-center">
                       <p className="">{result?.question}</p>
                       <p className="font-semibold">{result?.correctAnswer}</p>

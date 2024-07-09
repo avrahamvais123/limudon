@@ -13,8 +13,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html dir="rtl" lang="en" className="w-screen h-dvh">
-      <body className={`${font.className} size-full`}>{children}</body>
+    <html dir="rtl" lang="en" className="w-svw h-dvh border-0 border-red-600">
+      <body className={`${font.className} size-full border-0 border-green-600`}>{children}</body>
     </html>
   );
 }
