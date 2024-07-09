@@ -145,7 +145,14 @@ const Card = () => {
 
   const onChoose = (result) => {
     setResults((prev) => [...prev, result]);
-    handleComplete();
+    if (selectedIndex < words.length - 1) {
+      embla.scrollNext();
+      setStartCountdown(false);
+      setTimeout(() => setStartCountdown(true), 0);
+    } else {
+      setStartCountdown(false);
+      onCompleteQuiz(); // קריאה לפונקציה כאשר הסלייד האחרון נגמר
+    }
   };
 
   const onCompleteQuiz = () => {
@@ -169,6 +176,13 @@ const Card = () => {
       embla.scrollNext();
       setStartCountdown(false);
       setTimeout(() => setStartCountdown(true), 0);
+      const result = {
+        question: words[selectedIndex]?.question,
+        isCorrect: false,
+        chosenAnswer: "",
+        correctAnswer: words[selectedIndex]?.correct?.answer,
+      };
+      onChoose(result);
     } else {
       setStartCountdown(false);
       onCompleteQuiz(); // קריאה לפונקציה כאשר הסלייד האחרון נגמר
@@ -212,7 +226,8 @@ const Card = () => {
         "h-fit w-[28rem] p-6 transition-all",
         "flex flex-col items-center",
         "rounded-md bg-white",
-        "max-md:w-full"
+        "max-md:w-full",
+        openModalComplete && "h-full"
       )}
     >
       <Modal trigger={openModalStart} parentClassName="bg-white">
