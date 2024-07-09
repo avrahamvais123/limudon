@@ -11,8 +11,7 @@ import { IoClose } from "react-icons/io5";
 
 const words = [
   {
-    id: 1,
-    question: `מה פירוש המילה מאי`,
+    question: `מה פירוש המילה מַאִי`,
     correct: { num: 2, answer: "מה" },
     answers: [
       { num: 1, answer: "חודש מאי" },
@@ -22,8 +21,7 @@ const words = [
     ],
   },
   {
-    id: 2,
-    question: `מה פירוש המילים נפקא מינא`,
+    question: `מה פירוש המילים נָפְקָא מִינָא`,
     correct: { num: 1, answer: "יוצא מזה" },
     answers: [
       { num: 1, answer: "יוצא מזה" },
@@ -33,8 +31,7 @@ const words = [
     ],
   },
   {
-    id: 3,
-    question: `מה פירוש המילה פוריא`,
+    question: `מה פירוש המילה פּוּרְיָא`,
     correct: { num: 1, answer: "מיטה" },
     answers: [
       { num: 1, answer: "מיטה" },
@@ -44,8 +41,7 @@ const words = [
     ],
   },
   {
-    id: 4,
-    question: `מה פירוש המילה אורחא`,
+    question: `מה פירוש המילה אוֹרְחָא`,
     correct: { num: 4, answer: "דרך" },
     answers: [
       { num: 1, answer: "ארוחה" },
@@ -55,8 +51,7 @@ const words = [
     ],
   },
   {
-    id: 5,
-    question: `מה פירוש המילה חמרא`,
+    question: `מה פירוש המילה חַמְרָא`,
     correct: { num: 2, answer: "יין" },
     answers: [
       { num: 1, answer: "חמור" },
@@ -66,8 +61,7 @@ const words = [
     ],
   },
   {
-    id: 6,
-    question: `מה פירוש המילה אנפין`,
+    question: `מה פירוש המילה אַנְפִּין`,
     correct: { num: 3, answer: "פנים" },
     answers: [
       { num: 1, answer: "איפור" },
@@ -77,8 +71,7 @@ const words = [
     ],
   },
   {
-    id: 7,
-    question: `מה פירוש המילה אנא`,
+    question: `מה פירוש המילה אֲנָא`,
     correct: { num: 1, answer: "אני" },
     answers: [
       { num: 1, answer: "אני" },
@@ -88,8 +81,7 @@ const words = [
     ],
   },
   {
-    id: 8,
-    question: `מה פירוש המילה שונרא`,
+    question: `מה פירוש המילה שֻׁנְּרָא`,
     correct: { num: 3, answer: "חתול" },
     answers: [
       { num: 1, answer: "שן של שועל" },
@@ -99,8 +91,7 @@ const words = [
     ],
   },
   {
-    id: 9,
-    question: `מה פירוש המילים היכי דמי`,
+    question: `מה פירוש המילים הֵיכִי דָמֵי`,
     correct: { num: 2, answer: "איך מדובר" },
     answers: [
       { num: 1, answer: "כמה זה עולה" },
@@ -110,8 +101,7 @@ const words = [
     ],
   },
   {
-    id: 10,
-    question: `מה פירוש המילה ברייתא`,
+    question: `מה פירוש המילה בְּרָיְתָא`,
     correct: { num: 4, answer: "משנה שלא נכתבה ע׳׳י ר׳ יהודה הנשיא" },
     answers: [
       { num: 1, answer: "ת׳׳ח שיודע את המשנה על בוריה" },
@@ -151,7 +141,7 @@ const Card = () => {
       setTimeout(() => setStartCountdown(true), 0);
     } else {
       setStartCountdown(false);
-      onCompleteQuiz(); // קריאה לפונקציה כאשר הסלייד האחרון נגמר
+      onCompleteQuiz();
     }
   };
 
@@ -173,9 +163,6 @@ const Card = () => {
 
   const handleComplete = useCallback(() => {
     if (selectedIndex < words.length - 1) {
-      embla.scrollNext();
-      setStartCountdown(false);
-      setTimeout(() => setStartCountdown(true), 0);
       const result = {
         question: words[selectedIndex]?.question,
         isCorrect: false,
@@ -184,14 +171,21 @@ const Card = () => {
       };
       onChoose(result);
     } else {
+      const result = {
+        question: words[selectedIndex]?.question,
+        isCorrect: false,
+        chosenAnswer: "",
+        correctAnswer: words[selectedIndex]?.correct?.answer,
+      };
+      setResults((prev) => [...prev, result]); // הוספת התשובה השגויה האחרונה
       setStartCountdown(false);
-      onCompleteQuiz(); // קריאה לפונקציה כאשר הסלייד האחרון נגמר
+      onCompleteQuiz();
     }
   }, [embla, selectedIndex, words.length]);
 
   const Answers = ({ item }) => {
     return (
-      <>
+      <div className="w-full flex flex-col items-center gap-2">
         {item.answers.map(({ num, answer }, idx2) => {
           return (
             <button
@@ -215,7 +209,7 @@ const Card = () => {
             </button>
           );
         })}
-      </>
+      </div>
     );
   };
 
@@ -310,9 +304,7 @@ const Card = () => {
                 className="relative min-w-full flex flex-col items-center"
               >
                 <p className="text-xl font-semibold my-6">{item.question}</p>
-                <div className="w-full flex flex-col items-center gap-2">
-                  <Answers item={item} />
-                </div>
+                <Answers item={item} />
               </div>
             );
           })}
