@@ -1,21 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import Menu from "../ui/Menu";
 
 const Header = () => {
   const items = [
     { title: "בית", href: "/" },
-    {
-      title: "חידון",
-      subItems: [
-        { title: "חידון ארמית", href: "/quiz/aramit" },
-        { title: "חידון אנגלית", href: "/quiz/english" },
-      ],
-    },
+    { title: "חידון", href: "/quiz" },
     { title: "התחברות", href: "/login" },
   ];
 
@@ -26,8 +19,10 @@ const Header = () => {
         alt="logo"
         width={40}
         height={20}
+        priority
         className="w-auto"
       />
+
       <Menu items={items} />
 
       <Button className="">כניסה</Button>
@@ -36,3 +31,13 @@ const Header = () => {
 };
 
 export default Header;
+
+/* 
+  {
+      title: "חידון",
+      subItems: [
+        { title: "חידון ארמית", href: "/quiz/aramit" },
+        { title: "חידון אנגלית", href: "/quiz/english" },
+      ],
+    },
+*/
