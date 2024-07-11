@@ -1,6 +1,7 @@
 import React from "react";
 import Login from "../components/Login";
 import Image from "next/image";
+import { getUserSession } from "../components/session";
 
 const Page = () => {
   return (

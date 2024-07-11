@@ -7,6 +7,7 @@ import Input from "../../../ui/Input";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
+import axios from "axios";
 
 const schema = yup
   .object({
@@ -29,16 +30,15 @@ const Login = () => {
 
   const router = useRouter();
 
-  const onSubmit = async (data) => {
-    const response = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+  const handleGoogleLogin = () => {
+    router.push("/api/auth/google");
+    console.log("click");
+  };
 
-    if (response.ok) {
+  const onSubmit = async (data) => {
+    const res = await axios.post("/api/auth/login", data);
+
+    if (res?.status === 200) {
       console.log("Logged in successfully");
       router.push("/");
     } else {
@@ -82,16 +82,7 @@ const Login = () => {
         >
           <button
             type="button"
-            onClick={() => signIn("google")}
-            className="h-fit w-full p-3 flex items-center justify-center gap-2 rounded-sm border border-s-200"
-          >
-            <p className="text-s-400">כניסה עם גוגל</p>
-            <FcGoogle className="text-2xl" />
-          </button>
-
-          <button
-            type="button"
-            onClick={() => signIn("google")}
+            onClick={handleGoogleLogin}
             className="h-fit w-full p-3 flex items-center justify-center gap-2 rounded-sm border border-s-200"
           >
             <p className="text-s-400">כניסה עם גוגל</p>

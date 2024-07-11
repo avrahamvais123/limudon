@@ -1,4 +1,3 @@
-// app/api/auth/[...nextauth].js
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -6,7 +5,7 @@ import dbConnect from "@lib/dbConnect";
 import User from "@app/models/User";
 import bcrypt from "bcrypt";
 
-export const authOptions = {
+const handler = NextAuth({
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -50,9 +49,28 @@ export const authOptions = {
       session.user.id = token.id;
       return session;
     },
+    async signIn({ user, account, profile, email, credentials }) {
+      if (!profile.email) {
+        throw new Error("No Profile");
+      }
+
+      await dbConnect();
+      const existingUser = await User.findOne({ email: profile.email });
+      if (!existingUser) {
+        const newUser = new User({
+          username: profile.name,
+          email: profile.email,
+          password: profile.email,
+        });
+        await newUser.save();
+
+        return true;
+      }
+
+      return true;
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
-};
+});
 
-const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
