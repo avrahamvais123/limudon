@@ -1,7 +1,7 @@
 // app/api/auth/signin/route.js
 
 import dbConnect from "../../../../lib/dbConnect";
-import User from "../../../models/User";
+import User from "../../../models/User.js";
 
 export async function POST(request) {
   await dbConnect();
