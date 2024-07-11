@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import Input from "@ui/Input";
+import Input from "../../../ui/Input";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
