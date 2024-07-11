@@ -8,6 +8,12 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "_moduleAliases": {
+    "@": "src",
+    "@app": "src/app",
+    "@lib": "src/lib",
+    "@ui": "src/app/ui"
+  },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-navigation-menu": "^1.2.0",
@@ -20,6 +26,7 @@
     "embla-carousel-react": "^8.1.6",
     "framer-motion": "^11.2.14",
     "lucide-react": "^0.402.0",
+    "module-alias": "^2.2.3",
     "mongoose": "^8.4.5",
     "next": "14.2.4",
     "next-auth": "^4.24.7",
