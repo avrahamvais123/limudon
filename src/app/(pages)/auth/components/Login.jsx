@@ -83,18 +83,18 @@ const Login = () => {
           <button
             type="button"
             onClick={() => signIn("google")}
-            className="h-fit w-full p-2 flex items-center gap-2 rounded-sm border border-s-200"
+            className="h-fit w-full p-3 flex items-center justify-center gap-2 rounded-sm border border-s-200"
           >
-            <p className="text-xl text-s-400">כניסה עם גוגל</p>
+            <p className="text-s-400">כניסה עם גוגל</p>
             <FcGoogle className="text-2xl" />
           </button>
 
           <button
             type="button"
             onClick={() => signIn("google")}
-            className="h-fit w-full p-2 flex items-center gap-2 rounded-sm border border-s-200"
+            className="h-fit w-full p-3 flex items-center justify-center gap-2 rounded-sm border border-s-200"
           >
-            <p className="text-xl text-s-400">כניסה עם גוגל</p>
+            <p className="text-s-400">כניסה עם גוגל</p>
             <FcGoogle className="text-2xl" />
           </button>
         </div>
