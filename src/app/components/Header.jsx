@@ -10,12 +10,12 @@ const Header = () => {
   const pathname = usePathname();
 
   // Define routes where Header should not be displayed
-  const noHeaderRoutes = ["/login", "/register"];
+  const noHeaderRoutes = ["/auth/login", "/auth/signup"];
 
   const items = [
     { title: "בית", href: "/" },
     { title: "חידון", href: "/quiz" },
-    { title: "התחברות", href: "/login" },
+    { title: "התחברות", href: "/auth/signup" },
   ];
 
   return (
@@ -33,7 +33,7 @@ const Header = () => {
 
           <Menu items={items} />
 
-          <Button className="">כניסה</Button>
+          <Button>כניסה</Button>
         </header>
       )}
     </>

@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Input from "@ui/Input";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const schema = yup
   .object({
@@ -16,37 +18,33 @@ const schema = yup
   })
   .required();
 
-const LoginForm = () => {
+const Signup = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    console.log("data: ", data);
-  };
+  const router = useRouter();
 
-  const inputs = [
-    {
-      name: "שם",
-      errors: errors.username,
-      register: register("username"),
-    },
-    {
-      name: "אימייל",
-      errors: errors.email,
-      register: register("email"),
-    },
-    {
-      name: "סיסמה",
-      errors: errors.password,
-      register: register("password"),
-    },
-  ];
+  const onSubmit = async (data) => {
+    try {
+      const res = await axios.post("/api/auth/signup", data);
+
+      if (res.status === 201) {
+        router.push("/auth/login");
+      } else {
+        console.error("Failed to sign up");
+      }
+    } catch (error) {
+      console.error(
+        "Error signing up:",
+        error.response?.data?.message || error.message
+      );
+    }
+  };
 
   return (
     <form
@@ -66,9 +64,14 @@ const LoginForm = () => {
         errors={errors.password}
         register={register("password")}
       />
-      <button className="h-fit w-full mt-4 px-4 py-3 rounded-md bg-p-600 text-p-50 self-center" type="submit">שליחה</button>
+      <button
+        className="h-fit w-full mt-4 px-4 py-3 rounded-md bg-p-600 text-p-50 self-center"
+        type="submit"
+      >
+        שליחה
+      </button>
     </form>
   );
 };
 
-export default LoginForm;
+export default Signup;
