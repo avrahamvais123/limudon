@@ -8,14 +8,15 @@ import { user } from "@lib/valtio";
 import { useUpdateEffect } from "react-use";
 
 const Main = () => {
-  const [value, updateCookie, deleteCookie] = useCookie("token");
+  const [value] = useCookie("token");
   const snapshot = useSnapshot(user);
   const { decodedToken, isExpired } = useJwt(value);
-  
-  console.log('snapshot: ', snapshot);
-  
+
+  console.log("snapshot: ", snapshot);
+
   useUpdateEffect(() => {
     console.log("decodedToken from useeffect: ", decodedToken);
+    if (!decodedToken) return;
     user.userId = decodedToken?.userId;
     user.name = decodedToken?.name;
     user.email = decodedToken?.email;
@@ -34,25 +35,7 @@ const Main = () => {
 
       <button
         onClick={() => {
-          updateCookie("my-awesome-cookie");
-        }}
-      >
-        update cookie
-      </button>
-
-      <button
-        onClick={() => {
-          deleteCookie("token");
-        }}
-      >
-        delete cookie
-      </button>
-
-      <button
-        onClick={() => {
           console.log("user: ", user);
-          //user = "שלמה";
-          user.name = "שלמה";
         }}
       >
         set user

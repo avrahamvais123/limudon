@@ -6,6 +6,7 @@ import * as yup from "yup";
 import Input from "../../../ui/Input";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Image from "next/image";
 
 const schema = yup
   .object({
@@ -51,6 +52,15 @@ const Signup = () => {
       className="size-full p-4 bg-white border flex flex-col justify-center gap-4"
       onSubmit={handleSubmit(onSubmit)}
     >
+      <Image
+        src="/logo-limudon.png"
+        alt="avatar"
+        width={72}
+        height={72}
+        priority
+        className="self-center w-auto mb-6"
+      />
+
       <Input
         name="שם"
         errors={errors.username}
@@ -70,6 +80,18 @@ const Signup = () => {
       >
         שליחה
       </button>
+
+      <div className="flex items-center justify-center">
+        <p className="">
+          יש לך כבר חשבון?
+          <span
+            onClick={() => router.push("/auth/login")}
+            className="text-p-600 mr-1.5 cursor-pointer"
+          >
+            היכנס
+          </span>
+        </p>
+      </div>
     </form>
   );
 };

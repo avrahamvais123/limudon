@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
+import Image from "next/image";
 
 const schema = yup
   .object({
@@ -52,6 +53,15 @@ const Login = () => {
         className="size-full p-4 bg-white border flex flex-col justify-center gap-4"
         onSubmit={handleSubmit(onSubmit)}
       >
+        <Image
+          src="/logo-limudon.png"
+          alt="avatar"
+          width={72}
+          height={72}
+          priority
+          className="self-center w-auto mb-6"
+        />
+
         <Input
           name="אימייל"
           errors={errors.email}
@@ -88,6 +98,18 @@ const Login = () => {
             <p className="text-s-400">כניסה עם גוגל</p>
             <FcGoogle className="text-2xl" />
           </button>
+        </div>
+
+        <div className="flex items-center justify-center">
+          <p className="">
+            אין לך חשבון?
+            <span
+              onClick={() => router.push("/auth/signup")}
+              className="text-p-600 mr-1.5 cursor-pointer"
+            >
+              הירשם
+            </span>
+          </p>
         </div>
       </form>
     </>
