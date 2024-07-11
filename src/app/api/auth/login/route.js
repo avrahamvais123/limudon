@@ -1,4 +1,3 @@
-// app/api/auth/login/route.js
 import dbConnect from "@lib/dbConnect";
 import User from "@app/models/User";
 import bcrypt from "bcrypt";

@@ -1,5 +1,6 @@
-// app/api/auth/[...nextauth]/route.js
+// app/api/auth/[...nextauth].js
 import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import dbConnect from "@lib/dbConnect";
 import User from "@app/models/User";
@@ -50,6 +51,8 @@ export const authOptions = {
       return session;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
-export default NextAuth(authOptions);
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };
