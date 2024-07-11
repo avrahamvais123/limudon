@@ -8,12 +8,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "_moduleAliases": {
-    "@": "src",
-    "@app": "src/app",
-    "@lib": "src/lib",
-    "@ui": "src/app/ui"
-  },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-navigation-menu": "^1.2.0",
