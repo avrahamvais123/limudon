@@ -25,21 +25,7 @@ const Main = () => {
 
   return (
     <main className="size-full p-6 flex flex-col justify-center items-center gap-10 bg-s-50">
-      <button
-        onClick={() => {
-          console.log("value: ", value);
-        }}
-      >
-        get cookie
-      </button>
-
-      <button
-        onClick={() => {
-          console.log("user: ", user);
-        }}
-      >
-        set user
-      </button>
+     main
     </main>
   );
 };

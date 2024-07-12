@@ -38,7 +38,7 @@ const Header = () => {
           <Menu items={items} />
 
           <div className="h-full min-w-fit flex items-center justify-center gap-4">
-            <div className="flex flex-col items-center justify-center text-xs">
+            <div className="flex flex-col  justify-center text-xs">
               <p className="">{`שלום ${user?.name || "אורח"}`}</p>
               <p className="">{`ניקוד: ${user?.score || 0}`}</p>
             </div>
@@ -46,7 +46,7 @@ const Header = () => {
               <Image
                 src="/logo-limudon.png"
                 alt="avatar"
-                width={20}
+                width={40}
                 height={20}
                 priority
                 className="w-auto"
