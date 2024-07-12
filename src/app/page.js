@@ -1,6 +1,5 @@
 import Main from "./components/Main";
 import { cookies } from "next/headers";
-import Header from "./components/Header";
 
 export default function Home() {
   const cookieStore = cookies();

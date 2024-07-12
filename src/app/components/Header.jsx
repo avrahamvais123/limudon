@@ -7,22 +7,51 @@ import { usePathname } from "next/navigation";
 import { FaUserAlt } from "react-icons/fa";
 import { user } from "@lib/valtio";
 import { useSnapshot } from "valtio";
-import { useMedia } from "react-use";
 import SideMenu from "./SideMenu";
 import { cn } from "@lib/utils";
+import { IoHome } from "react-icons/io5";
+import { FaQuestion } from "react-icons/fa";
+import { FaSignInAlt } from "react-icons/fa";
+
+const Avatar = () => {
+  const snapshot = useSnapshot(user);
+
+  return (
+    <div className="h-full min-w-fit flex items-center justify-center gap-4">
+      <div className="max-md:hidden flex flex-col  justify-center text-xs">
+        <p className="">{`שלום ${snapshot?.name || "אורח"}`}</p>
+        <p className="">{`ניקוד: ${snapshot?.score || 0}`}</p>
+      </div>
+
+      <div className="relative h-10 w-auto aspect-square bg-s-200 rounded-full p-2 flex items-center justify-center">
+        <div className="absolute inset-0 rounded-full border border-s-300 scale-[120%]" />
+        {snapshot?.picture !== "" ? (
+          <Image
+            src={snapshot?.picture}
+            alt="avatar"
+            sizes={50}
+            fill
+            priority
+            className="w-auto rounded-full"
+          />
+        ) : (
+          <FaUserAlt className="size-full text-s-400" />
+        )}
+      </div>
+    </div>
+  );
+};
 
 const Header = () => {
   const pathname = usePathname();
-  const snapshot = useSnapshot(user);
   const [open, setOpen] = useState(false);
-  const md = useMedia("(min-width: 768px)");
 
   const noHeaderRoutes = ["/auth/login", "/auth/signup"];
 
   const items = [
-    { title: "בית", href: "/" },
-    { title: "חידון", href: "/quiz" },
-    { title: "התחברות", href: "/auth/signup" },
+    { title: "בית", href: "/", icon: <IoHome /> },
+    { title: "חידון", href: "/quiz", icon: <FaQuestion /> },
+    { title: "התחברות", href: "/auth/signup", icon: <FaSignInAlt /> },
   ];
 
   return (
@@ -43,49 +72,16 @@ const Header = () => {
 
       <Menu items={items} />
 
-      <SideMenu open={open} setOpen={setOpen}>
-        <div className="size-full flex flex-col items-center">
-          <div className="relative">
-            <Image
-              src={user?.picture}
-              alt="avatar"
-              sizes={50}
-              fill
-              className="rounded-full"
-            />
-          </div>
-        </div>
-      </SideMenu>
+      <SideMenu open={open} setOpen={setOpen} items={items} />
 
-      <div className="h-full min-w-fit flex items-center justify-center gap-4">
-        {/* {md && (
-          <div className="flex flex-col  justify-center text-xs">
-            <p className="">{`שלום ${snapshot?.name || "אורח"}`}</p>
-            <p className="">{`ניקוד: ${snapshot?.score || 0}`}</p>
-          </div>
-        )} */}
-        <div className="relative h-10 w-auto aspect-square bg-s-200 rounded-full p-2 flex items-center justify-center">
-          <div className="absolute inset-0 rounded-full border border-s-300 scale-[120%]" />
-          {snapshot?.picture !== "" ? (
-            <Image
-              src={snapshot?.picture}
-              alt="avatar"
-              sizes={50}
-              fill
-              priority
-              className="w-auto rounded-full"
-            />
-          ) : (
-            <FaUserAlt className="size-full text-s-400" />
-          )}
-        </div>
-      </div>
+      <Avatar />
     </div>
   );
 };
 
 export default Header;
 
+// לא למחוק
 /* 
   {
       title: "חידון",
