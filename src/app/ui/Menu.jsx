@@ -69,7 +69,7 @@ const Menu = ({ items }) => {
   const closeModal = () => setOpenItemIndex(null);
 
   return (
-    <div className="relative size-full flex items-center justify-center">
+    <div className="max-md:hidden relative size-full flex items-center justify-center">
       <div ref={ref} className="size-fit cursor-pointer">
         <div className="flex gap-2 mt-2">
           {items.map((item, index) => (

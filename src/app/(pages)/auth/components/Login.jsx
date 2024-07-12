@@ -5,10 +5,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Input from "../../../ui/Input";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import Image from "next/image";
+import Separator from "@ui/Separator";
 
 const schema = yup
   .object({
@@ -79,13 +79,7 @@ const Login = () => {
           כניסה
         </button>
 
-        <div /* SEPARATE */
-          className="h-[0.05rem] w-full my-4 relative bg-s-300"
-        >
-          <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-4 text-s-400 text-center">
-            או
-          </p>
-        </div>
+        <Separator>או</Separator>
 
         <div /* GOOGLE ACCESS */
           className="flex items-center justify-center gap-2 border-0 border-red-500"
@@ -100,7 +94,7 @@ const Login = () => {
           </button>
         </div>
 
-        <div className="flex items-center justify-center">
+        <div /* SIGN UP */ className="flex items-center justify-center">
           <p className="">
             אין לך חשבון?
             <span

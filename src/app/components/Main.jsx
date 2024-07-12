@@ -7,7 +7,8 @@ import { useSnapshot } from "valtio";
 import { user } from "@lib/valtio";
 import { useUpdateEffect } from "react-use";
 
-const Main = () => {
+const Main = ({ token }) => {
+  console.log('token: ', token);
   const [value] = useCookie("token");
   const snapshot = useSnapshot(user);
   const { decodedToken, isExpired } = useJwt(value);
@@ -17,16 +18,18 @@ const Main = () => {
   useUpdateEffect(() => {
     console.log("decodedToken from useeffect: ", decodedToken);
     if (!decodedToken) return;
+
     user.userId = decodedToken?.userId;
     user.name = decodedToken?.name;
     user.email = decodedToken?.email;
     user.picture = decodedToken?.picture;
+    user.score = decodedToken?.score;
   }, [decodedToken, value]);
 
   return (
-    <main className="size-full p-6 flex flex-col justify-center items-center gap-10 bg-s-50">
-     main
-    </main>
+    <div className="size-full p-6 flex flex-col justify-center items-center gap-10 bg-s-50">
+      main
+    </div>
   );
 };
 
