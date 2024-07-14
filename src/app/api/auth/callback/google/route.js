@@ -16,7 +16,7 @@ export async function GET(request) {
     grant_type: "authorization_code",
   });
 
-  const { id_token, access_token } = data;
+  const { access_token } = data;
 
   const { data: userInfo } = await axios.get(
     `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`

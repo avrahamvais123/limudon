@@ -9,6 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import Image from "next/image";
 import Separator from "@ui/Separator";
+import api from "@lib/api";
 
 const schema = yup
   .object({
@@ -38,6 +39,7 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     const res = await axios.post("/api/auth/login", data);
+    console.log("res: ", res);
 
     if (res?.status === 200) {
       console.log("Logged in successfully");

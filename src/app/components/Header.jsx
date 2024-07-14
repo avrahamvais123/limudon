@@ -15,6 +15,7 @@ import { FaSignInAlt } from "react-icons/fa";
 
 const Avatar = () => {
   const snapshot = useSnapshot(user);
+  console.log("snapshot?.picture: ", snapshot?.picture);
 
   return (
     <div className="h-full min-w-fit flex items-center justify-center gap-4">
@@ -25,7 +26,7 @@ const Avatar = () => {
 
       <div className="relative h-10 w-auto aspect-square bg-s-200 rounded-full p-2 flex items-center justify-center">
         <div className="absolute inset-0 rounded-full border border-s-300 scale-[120%]" />
-        {snapshot?.picture !== "" ? (
+        {snapshot?.picture ? (
           <Image
             src={snapshot?.picture}
             alt="avatar"

@@ -9,6 +9,7 @@ import { useUpdateEffect } from "react-use";
 const Main = ({ token }) => {
   const snapshot = useSnapshot(user);
   const { decodedToken, isExpired } = useJwt(token);
+  console.log('isExpired: ', isExpired);
 
   console.log("snapshot: ", snapshot);
 
