@@ -82,6 +82,6 @@ export async function middleware(request) {
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|logo.ico|auth/login|api/auth/signup|api/auth/login|auth/signup|api/auth/google|api/auth/callback/google|$).*)",
+    "/((?!_next/static|_next/image|logo.ico|logo-limudon.png|books-background.jpg|auth/login|api/auth/signup|api/auth/login|auth/signup|api/auth/google|api/auth/callback/google|$).*)",
   ],
 };
