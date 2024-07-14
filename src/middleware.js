@@ -27,7 +27,7 @@ export async function middleware(request) {
 
   console.log("isExcluded:", isExcluded);
 
-  if (!token && !isExcluded) {
+  if (!refreshToken && !isExcluded) {
     console.log("No token found, redirecting to login");
     return NextResponse.redirect(new URL("/auth/login", request.url));
   }
@@ -42,7 +42,7 @@ export async function middleware(request) {
       return NextResponse.next();
     } catch (err) {
       console.log("Invalid token, error:", err.message);
-      if (err.message !== "jwt expired" || !refreshToken) {
+      if (err.message !== "JWTExpired" || !refreshToken) {
         return NextResponse.redirect(new URL("/auth/login", request.url));
       }
     }
