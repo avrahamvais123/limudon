@@ -19,7 +19,7 @@ const Page = async () => {
           className="w-full h-1/6 flex items-center justify-center border-0 border-s-400 rounded-md"
         >
           <div /* IMAGE */ className="relative h-full w-40 min-w-40">
-            <div className="absolute left-14 top-0 -translate-x-1/2 -translate-y-1/2 p-4 border-[3px] border-white shadow-lg bg-s-100 rounded-full">
+            <div className="absolute left-14 top-4 -translate-x-1/2 -translate-y-1/2 p-4 border-[3px] border-white shadow-lg bg-s-100 rounded-full">
               {payload?.image ? (
                 <Image src={payload?.image} alt="avatar" sizes={50} fill />
               ) : (
