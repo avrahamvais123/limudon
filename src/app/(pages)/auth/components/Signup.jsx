@@ -10,7 +10,7 @@ import Image from "next/image";
 
 const schema = yup
   .object({
-    username: yup.string().required("זהו שדה חובה"),
+    name: yup.string().required("זהו שדה חובה"),
     email: yup.string().email("יש להכניס אימייל תקני").required("זהו שדה חובה"),
     password: yup
       .string()
@@ -63,8 +63,8 @@ const Signup = () => {
 
       <Input
         name="שם"
-        errors={errors.username}
-        register={register("username")}
+        errors={errors.name}
+        register={register("name")}
       />
 
       <Input name="אימייל" errors={errors.email} register={register("email")} />

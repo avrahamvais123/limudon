@@ -17,7 +17,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html dir="rtl" lang="en" className="w-dvw h-dvh border-0 border-red-600">
+    <html dir="rtl" lang="he" className="w-dvw h-dvh border-0 border-red-600">
       <body className={`${font.className} size-full flex flex-col border-0 border-green-600 bg-s-50`}>
         <Header />
         {children}

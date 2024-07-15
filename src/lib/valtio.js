@@ -5,8 +5,11 @@ const user = proxy({
   userId: "",
   name: "",
   email: "",
-  picture: "",
+  password: "",
+  image: "",
   score: 0,
+  isAdmin: false,
+  isPaid: false,
 });
 
 const quiz = proxy({

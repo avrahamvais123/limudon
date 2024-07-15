@@ -13,6 +13,16 @@ const quizSchema = new mongoose.Schema({
     type: Array,
     required: [true, "Answers is required"],
   },
+  type: {
+    type: String,
+    required: [true, "Type is required"],
+  },
+  level: {
+    type: Number,
+  },
+  alphabet: {
+    type: String,
+  },
 });
 
 export default mongoose.models.Quiz || mongoose.model("Quiz", quizSchema);

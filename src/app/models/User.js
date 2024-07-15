@@ -2,17 +2,33 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema({
-  username: {
+  name: {
     type: String,
-    required: [true, "username is required"],
+    required: [true, "name is required"],
   },
   email: {
     type: String,
     required: [true, "email is required"],
+    unique: [true, "email is unique"],
   },
   password: {
     type: String,
-    //required: [true, "password is required"],
+    required: [true, "password is required"],
+  },
+  image: {
+    type: String,
+  },
+  score: {
+    type: Number,
+    default: 0,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  isPaid: {
+    type: Boolean,
+    default: false,
   },
 });
 

@@ -71,7 +71,7 @@ const Menu = ({ items }) => {
   return (
     <div className="max-md:hidden relative size-full flex items-center justify-center">
       <div ref={ref} className="size-fit cursor-pointer">
-        <div className="flex gap-2 mt-2">
+        <div className="flex gap-2">
           {items.map((item, index) => (
             <MenuItem
               key={item.title}

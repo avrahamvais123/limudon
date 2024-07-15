@@ -45,10 +45,13 @@ export const tokenControl = async (request) => {
 
       const newToken = await new SignJWT({
         userId: payload.userId,
-        name: payload.name,
-        email: payload.email,
-        picture: payload.picture,
-        score: payload.score,
+        name: payload?.name,
+        email: payload?.email,
+        password: payload?.password,
+        image: payload?.image,
+        score: payload?.score,
+        isAdmin: payload?.isAdmin,
+        isPaid: payload?.isPaid,
       })
         .setProtectedHeader({ alg: "HS256" })
         .setExpirationTime("1h")

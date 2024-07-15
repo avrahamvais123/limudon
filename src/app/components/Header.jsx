@@ -3,15 +3,16 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Menu from "../ui/Menu";
+import SideMenu from "./SideMenu";
 import { usePathname } from "next/navigation";
-import { FaUserAlt } from "react-icons/fa";
 import { user } from "@lib/valtio";
 import { useSnapshot } from "valtio";
-import SideMenu from "./SideMenu";
 import { cn } from "@lib/utils";
+import { FaUserAlt } from "react-icons/fa";
 import { IoHome } from "react-icons/io5";
 import { FaQuestion } from "react-icons/fa";
 import { FaSignInAlt } from "react-icons/fa";
+import { IoSettingsSharp } from "react-icons/io5";
 
 const Avatar = () => {
   const snapshot = useSnapshot(user);
@@ -52,6 +53,7 @@ const Header = () => {
   const items = [
     { title: "בית", href: "/", icon: <IoHome /> },
     { title: "חידון", href: "/quiz", icon: <FaQuestion /> },
+    { title: "הגדרות", href: "/settings", icon: <IoSettingsSharp /> },
     { title: "התחברות", href: "/auth/signup", icon: <FaSignInAlt /> },
   ];
 
